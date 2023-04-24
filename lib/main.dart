@@ -14,7 +14,13 @@ class Museum extends StatelessWidget {
 }
 
 class MainImage extends StatelessWidget {
-  const MainImage({super.key});
+  final bool isLiked;
+
+  const MainImage({
+    super.key,
+    this.isLiked = false,
+  });
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +36,7 @@ class MainImage extends StatelessWidget {
             child: Icon(
               Icons.favorite,
               size: 100,
-              color: Colors.white.withOpacity(0.75)
+              color: isLiked ? Colors.red.withOpacity(0.75) : Colors.white.withOpacity(0)
             ),
           ),
         ),
@@ -61,15 +67,15 @@ class _BodyWidgetState extends State<BodyWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const MainImage(),
+            MainImage(isLiked: _isLiked,),
             const Text("Mona Lisa", style: TextStyle(fontFamily: 'Merriweather', fontSize: 30, color: Colors.brown),),
             const Text("Leonard De Vinci", style: TextStyle(fontFamily: 'Merriweather', fontSize: 15, fontWeight: FontWeight.w700, color: Colors.brown),),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center ,
-              children: const [
-                Icon(Icons.article),
-                Icon(Icons.favorite)
+              children: [
+                const Icon(Icons.article, color: Colors.brown,),
+                IconButton(icon: Icon(Icons.favorite, color: _isLiked ? Colors.red : Colors.brown,), onPressed: () { like(); },)
               ],
             )
           ]

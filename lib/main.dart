@@ -58,7 +58,21 @@ quotidiennement.""";
         ),
         Positioned(
           child: Center(
-            child: SizedBox(width: 300, height: 350, child: Text(isDisplayText ? pictureText: "", style: const TextStyle(color: Colors.white),))
+            child: SizedBox(
+              width: 300,
+              height: 350,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Text(
+                  isDisplayText ? pictureText : "",
+                  style: const TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Merriweather',
+                  fontSize: 15,
+                  ),
+                ),
+              ),
+            )
           ),
         ),
       ],

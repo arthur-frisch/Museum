@@ -19,11 +19,10 @@ class MainImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      fit: StackFit.expand,
       alignment: Alignment.center,
       children: <Widget>[
         Image.asset(
-          "assets/images/mona_lisa.jpeg",
+          "assets/images/mona_lisa.jpg",
           fit: BoxFit.cover,
         ),
         Positioned(
@@ -40,11 +39,21 @@ class MainImage extends StatelessWidget {
   }
 }
 
+class BodyWidget extends StatefulWidget {
+  const BodyWidget({super.key});
 
-class BodyWidget extends StatelessWidget {
-  const BodyWidget({
-    super.key,
+  @override
+  State<BodyWidget> createState() => _BodyWidgetState();
+}
+
+class _BodyWidgetState extends State<BodyWidget> {
+  bool _isLiked = false;
+
+  void like() {
+    setState(() {
+      _isLiked = !_isLiked;
     });
+  }
 
   @override
   Center build(BuildContext context) {
@@ -52,9 +61,7 @@ class BodyWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Expanded(
-              child: MainImage(),
-            ),
+            const MainImage(),
             const Text("Mona Lisa", style: TextStyle(fontFamily: 'Merriweather', fontSize: 30, color: Colors.brown),),
             const Text("Leonard De Vinci", style: TextStyle(fontFamily: 'Merriweather', fontSize: 15, fontWeight: FontWeight.w700, color: Colors.brown),),
             Row(
